@@ -45,28 +45,9 @@ class CardPlayer(automaton.Automaton):
         elif type(play_card) is Card|tuple:
             play_zone.put_card(self.hand.play(play_card))
         
-#    def play(self, play_zone: Zone|None = None, to_play: int|list[int]|None = None):
-#        '''play the numbered card to the indicated zone
-#        optionally passed a Zone and int or list of ints to play from hand
-#        will play one card at random to the play zone'''
-#        if not play_zone and 'play' in self.zones.keys():
-#            play_zone = self.zones['play']
-#        if not play_zone:
-#            raise zones.MissingZone(f"{self.name} has no zone to play to")
-#        if isinstance(to_play,int):    #plays a single card
-#            play_zone.put_card(self.hand.play(to_play-1))
-#        elif isinstance(to_play,list):  #plays a list of cards
-#            for c in to_play:
-#                play_zone.put_card(self.hand.play(c-1))
-#        elif to_play is not None:   #I'm still learning to use exceptions
-#            raise TypeError("cannot play a non-card")
-#        else:   #plays a random card if unspecified
-#            play_zone.put_card(self.hand.play_rand())
-
-    def discard(self,to_disc: int|list[int]|None = None):
-        '''play but for the discard zone'''
+    def discard(self,card_to_disc: Card | tuple[int,str] | None = None):
         if self.discard_zone:
-            self.play(play_zone = self.discard_zone, play_card = to_disc)
+            self.play(play_zone=self.discard_zone, play_card = card_to_disc)
         else:
             raise zones.MissingZone(f'discard zone not assigned to {self.name}')
         
@@ -74,7 +55,8 @@ class CardPlayer(automaton.Automaton):
         '''will draw up to the player's max hand size
         if new_hand is true, the old hand is discarded'''
         if new_hand and self.hand.card_count() > 0:
-            self.discard(list(range(1,self.hand.card_count()+1)))
+            for card in self.hand:
+                self.discard(card)
         while self.hand.card_count() < self.hand.card_max:
             self.draw()
 

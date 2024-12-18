@@ -1,1 +1,11 @@
 /__pycache__/*
+.vscode/settings.json
+cardboard/__pycache__/__init__.cpython-312.pyc
+cardboard/__pycache__/automaton.cpython-312.pyc
+cardboard/__pycache__/board.cpython-312.pyc
+cardboard/__pycache__/card.cpython-312.pyc
+cardboard/__pycache__/deck.cpython-312.pyc
+cardboard/__pycache__/deckbox.cpython-312.pyc
+cardboard/__pycache__/hand.cpython-312.pyc
+cardboard/__pycache__/zones.cpython-312.pyc
+toolbench.code-workspace

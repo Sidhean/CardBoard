@@ -1,4 +1,5 @@
-from card import Card
+from .card import Card
+from cardboard import card
 #zone ideas:
 #deck storage: keeps deck, active/inactive status, and original owner
 
@@ -30,8 +31,9 @@ class Zone:
             return card_grabbed
         return self.contents.pop()
 
-    def put_card(self, card_to_put: Card):
-        self.contents.append(card_to_put)
+    def put_card(self, card_to_put: Card|None):
+        if card_to_put:
+            self.contents.append(card_to_put)
 
 
 class MissingZone(Exception):

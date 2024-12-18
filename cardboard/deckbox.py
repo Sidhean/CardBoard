@@ -1,5 +1,5 @@
-from deck import Deck
-from card import Card
+from .deck import Deck
+from .card import Card
 
 class DeckConstr(Deck):
     '''Creates a Deck out of a DeckConstr Class.

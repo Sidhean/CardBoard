@@ -1,5 +1,5 @@
-from card import Card
 from random import shuffle
+from .card import Card
 
 
 class Deck: # count should modify the number of times the deck is repeated,
@@ -34,12 +34,13 @@ class Deck: # count should modify the number of times the deck is repeated,
 
     def stack_deck(self):
         self.cards = []
-        for s in self.suits:
-            for r in self.ranks:
-                self.cards.append(Card(r, s))
-        if self.extra_cards:
-            for card in self.extra_cards:
-                self.cards.append(card)
+        for _ in range(self.count):
+            for s in self.suits:
+                for r in self.ranks:
+                    self.cards.append(Card(r, s))
+            if self.extra_cards:
+                for card in self.extra_cards:
+                    self.cards.append(card)
             
     def draw(self) -> Card:
         return self.cards.pop(0)
